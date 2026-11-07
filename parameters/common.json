@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "part_order": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "skill_ids": [
+    0,
+    1,
+    2
+  ],
+  "time_unit": "model time unit",
+  "maintenance_window_length": 1.0,
+  "production_period_length": 20.0,
+  "episode_horizon_windows": 20,
+  "baseline_replenishment_interval_windows": 5,
+  "actions": [
+    {
+      "name": "NM",
+      "restoration_level": 0,
+      "remaining_age_factor": 1
+    },
+    {
+      "name": "PM1",
+      "restoration_level": 0.4,
+      "remaining_age_factor": 0.6
+    },
+    {
+      "name": "PM2",
+      "restoration_level": 0.6,
+      "remaining_age_factor": 0.4
+    },
+    {
+      "name": "PM3",
+      "restoration_level": 0.8,
+      "remaining_age_factor": 0.2
+    },
+    {
+      "name": "CM",
+      "restoration_level": 0.98,
+      "remaining_age_factor": 0.02
+    }
+  ],
+  "execution": {
+    "mandatory_corrective_work_first": true,
+    "corrective_action_on_healthy_machines_allowed": true,
+    "default_discretionary_rule": "all_or_nothing",
+    "mandatory_spare_part_shortages": "emergency_procurement",
+    "mandatory_window_overruns": "spillover"
+  },
+  "environment_violation_penalties": {
+    "baseline": {
+      "parts": 10,
+      "workforce": 10
+    },
+    "sensitivity_common_coefficients": [
+      0,
+      10,
+      20
+    ]
+  },
+  "processing_time_definition": {
+    "NM": "0",
+    "PM": "machine.cm_time * restoration_level",
+    "CM": "machine.cm_time",
+    "worker_adjustment": "nominal_processing_time * worker_efficiency"
+  },
+  "operating_time_definition": "tau_p * (1 - failure_probability * failure_indicator)"
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "machine_count": 24,
+  "replenishment_interval_variant": {
+    "baseline_interval_windows": 5,
+    "alternative_interval_windows": 6,
+    "initial_stock_and_batch_quantities": "same as baseline supply in resource_grid_24.json"
+  },
+  "qualification_overlap_variant": {
+    "worker_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "skill_ids": [
+      0,
+      1,
+      2
+    ],
+    "baseline": [
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "alternative": [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "qualified_worker_counts_per_skill": [
+      2,
+      2,
+      2
+    ]
+  },
+  "fixed_tight_inventory_workforce_comparison": {
+    "inventory_supply_factor": 0.5,
+    "worker_counts": [
+      4,
+      8
+    ],
+    "eight_worker_profiles": "Duplicate each of the four baseline worker qualification and efficiency profiles."
+  },
+  "execution_rule_variants": [
+    "all_or_nothing",
+    "fixed_order_partial_acceptance",
+    "long_job_first_partial_acceptance"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "machine_count": 24,
+  "part_order": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "stock_distribution": "discrete_uniform_inclusive",
+  "scaling_rule": "floor each baseline initial-stock bound and delivery quantity after multiplying by the supply factor",
+  "replenishment_interval_windows": 5,
+  "inventory_supplies": [
+    {
+      "factor": 1,
+      "initial_stock_integer_ranges": [
+        [
+          29,
+          45
+        ],
+        [
+          23,
+          35
+        ],
+        [
+          11,
+          18
+        ]
+      ],
+      "replenishment_per_delivery": [
+        31,
+        19,
+        7
+      ]
+    },
+    {
+      "factor": 0.75,
+      "initial_stock_integer_ranges": [
+        [
+          21,
+          33
+        ],
+        [
+          17,
+          26
+        ],
+        [
+          8,
+          13
+        ]
+      ],
+      "replenishment_per_delivery": [
+        23,
+        14,
+        5
+      ]
+    },
+    {
+      "factor": 0.5,
+      "initial_stock_integer_ranges": [
+        [
+          14,
+          22
+        ],
+        [
+          11,
+          17
+        ],
+        [
+          5,
+          9
+        ]
+      ],
+      "replenishment_per_delivery": [
+        15,
+        9,
+        3
+      ]
+    }
+  ],
+  "workforce_configurations": [
+    {
+      "worker_count": 4,
+      "retained_worker_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "qualified_worker_counts_per_skill": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "worker_count": 3,
+      "retained_worker_ids": [
+        0,
+        2,
+        3
+      ],
+      "qualified_worker_counts_per_skill": [
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "worker_count": 2,
+      "retained_worker_ids": [
+        0,
+        2
+      ],
+      "qualified_worker_counts_per_skill": [
+        1,
+        2,
+        1
+      ]
+    }
+  ],
+  "combinations": [
+    {
+      "supply_factor": 1,
+      "worker_count": 4
+    },
+    {
+      "supply_factor": 1,
+      "worker_count": 3
+    },
+    {
+      "supply_factor": 1,
+      "worker_count": 2
+    },
+    {
+      "supply_factor": 0.75,
+      "worker_count": 4
+    },
+    {
+      "supply_factor": 0.75,
+      "worker_count": 3
+    },
+    {
+      "supply_factor": 0.75,
+      "worker_count": 2
+    },
+    {
+      "supply_factor": 0.5,
+      "worker_count": 4
+    },
+    {
+      "supply_factor": 0.5,
+      "worker_count": 3
+    },
+    {
+      "supply_factor": 0.5,
+      "worker_count": 2
+    }
+  ],
+  "default": {
+    "supply_factor": 1,
+    "worker_count": 4
+  }
+}

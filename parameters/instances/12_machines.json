@@ -1,0 +1,692 @@
+{
+  "schema_version": 1,
+  "machine_count": 12,
+  "stage_count": 4,
+  "default_worker_count": 2,
+  "part_order": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "skill_ids": [
+    0,
+    1,
+    2
+  ],
+  "stage_to_machine_ids": {
+    "1": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "2": [
+      5,
+      6
+    ],
+    "3": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "4": [
+      11,
+      12
+    ]
+  },
+  "machines": [
+    {
+      "name": "Machine1",
+      "id": 1,
+      "stage": 1,
+      "lifetime": 1500.0,
+      "shape": 2.42,
+      "scale": 256.0,
+      "bias": 1.05,
+      "A_condition": -0.7147,
+      "A_cap": 0.23,
+      "cm_time": 0.51,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          1,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          1,
+          0
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.204,
+        "PM2": 0.306,
+        "PM3": 0.408,
+        "CM": 0.51
+      }
+    },
+    {
+      "name": "Machine2",
+      "id": 2,
+      "stage": 1,
+      "lifetime": 2000.0,
+      "shape": 1.95,
+      "scale": 389.0,
+      "bias": 1.03,
+      "A_condition": -0.8511,
+      "A_cap": 0.22,
+      "cm_time": 0.53,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 2,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.212,
+        "PM2": 0.318,
+        "PM3": 0.424,
+        "CM": 0.53
+      }
+    },
+    {
+      "name": "Machine3",
+      "id": 3,
+      "stage": 1,
+      "lifetime": 1800.0,
+      "shape": 2.39,
+      "scale": 215.0,
+      "bias": 0.74,
+      "A_condition": -0.7639,
+      "A_cap": 0.22,
+      "cm_time": 0.56,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          1
+        ],
+        "CM": [
+          0,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.224,
+        "PM2": 0.336,
+        "PM3": 0.448,
+        "CM": 0.56
+      }
+    },
+    {
+      "name": "Machine4",
+      "id": 4,
+      "stage": 1,
+      "lifetime": 2200.0,
+      "shape": 2.38,
+      "scale": 376.0,
+      "bias": 1.03,
+      "A_condition": -0.6313,
+      "A_cap": 0.33,
+      "cm_time": 0.53,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 0,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.212,
+        "PM2": 0.318,
+        "PM3": 0.424,
+        "CM": 0.53
+      }
+    },
+    {
+      "name": "Machine5",
+      "id": 5,
+      "stage": 2,
+      "lifetime": 1700.0,
+      "shape": 1.46,
+      "scale": 387.0,
+      "bias": 1.18,
+      "A_condition": 0.7933,
+      "A_cap": 0.55,
+      "cm_time": 0.61,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          1,
+          0
+        ],
+        "CM": [
+          0,
+          1,
+          0
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 0,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.244,
+        "PM2": 0.366,
+        "PM3": 0.488,
+        "CM": 0.61
+      }
+    },
+    {
+      "name": "Machine6",
+      "id": 6,
+      "stage": 2,
+      "lifetime": 1900.0,
+      "shape": 2.46,
+      "scale": 379.0,
+      "bias": 0.77,
+      "A_condition": -0.4221,
+      "A_cap": 0.45,
+      "cm_time": 0.65,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          0
+        ],
+        "CM": [
+          0,
+          1,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 0,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.26,
+        "PM2": 0.39,
+        "PM3": 0.52,
+        "CM": 0.65
+      }
+    },
+    {
+      "name": "Machine7",
+      "id": 7,
+      "stage": 3,
+      "lifetime": 2100.0,
+      "shape": 1.89,
+      "scale": 398.0,
+      "bias": 1.12,
+      "A_condition": 0.0,
+      "A_cap": 0.25,
+      "cm_time": 0.58,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          1,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.232,
+        "PM2": 0.348,
+        "PM3": 0.464,
+        "CM": 0.58
+      }
+    },
+    {
+      "name": "Machine8",
+      "id": 8,
+      "stage": 3,
+      "lifetime": 1600.0,
+      "shape": 2.29,
+      "scale": 365.0,
+      "bias": 1.11,
+      "A_condition": 0.0,
+      "A_cap": 0.25,
+      "cm_time": 0.47,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 2,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.188,
+        "PM2": 0.282,
+        "PM3": 0.376,
+        "CM": 0.47
+      }
+    },
+    {
+      "name": "Machine9",
+      "id": 9,
+      "stage": 3,
+      "lifetime": 2400.0,
+      "shape": 1.62,
+      "scale": 205.0,
+      "bias": 1.32,
+      "A_condition": 0.0,
+      "A_cap": 0.25,
+      "cm_time": 0.61,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          1,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.244,
+        "PM2": 0.366,
+        "PM3": 0.488,
+        "CM": 0.61
+      }
+    },
+    {
+      "name": "Machine10",
+      "id": 10,
+      "stage": 3,
+      "lifetime": 2000.0,
+      "shape": 2.03,
+      "scale": 403.0,
+      "bias": 0.75,
+      "A_condition": 0.0,
+      "A_cap": 0.25,
+      "cm_time": 0.61,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          1
+        ],
+        "CM": [
+          0,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 0,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.244,
+        "PM2": 0.366,
+        "PM3": 0.488,
+        "CM": 0.61
+      }
+    },
+    {
+      "name": "Machine11",
+      "id": 11,
+      "stage": 4,
+      "lifetime": 1750.0,
+      "shape": 1.86,
+      "scale": 271.0,
+      "bias": 0.63,
+      "A_condition": -0.6576,
+      "A_cap": 0.25,
+      "cm_time": 0.66,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          0
+        ],
+        "CM": [
+          1,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 1,
+        "PM3": 0,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.264,
+        "PM2": 0.396,
+        "PM3": 0.528,
+        "CM": 0.66
+      }
+    },
+    {
+      "name": "Machine12",
+      "id": 12,
+      "stage": 4,
+      "lifetime": 1850.0,
+      "shape": 2.66,
+      "scale": 249.0,
+      "bias": 0.88,
+      "A_condition": -1.0504,
+      "A_cap": 0.25,
+      "cm_time": 0.6,
+      "parts_by_action": {
+        "NM": [
+          0,
+          0,
+          0
+        ],
+        "PM1": [
+          0,
+          0,
+          0
+        ],
+        "PM2": [
+          0,
+          0,
+          0
+        ],
+        "PM3": [
+          0,
+          0,
+          1
+        ],
+        "CM": [
+          0,
+          0,
+          1
+        ]
+      },
+      "required_skill_by_action": {
+        "PM1": 2,
+        "PM2": 2,
+        "PM3": 1,
+        "CM": 0
+      },
+      "nominal_processing_time_by_action": {
+        "NM": 0,
+        "PM1": 0.24,
+        "PM2": 0.36,
+        "PM3": 0.48,
+        "CM": 0.6
+      }
+    }
+  ],
+  "workers": [
+    {
+      "id": 0,
+      "qualifications": [
+        1,
+        1,
+        0
+      ],
+      "efficiency_by_skill": [
+        0.8,
+        1.0,
+        null
+      ]
+    },
+    {
+      "id": 1,
+      "qualifications": [
+        0,
+        1,
+        1
+      ],
+      "efficiency_by_skill": [
+        null,
+        0.9,
+        1.0
+      ]
+    }
+  ]
+}
