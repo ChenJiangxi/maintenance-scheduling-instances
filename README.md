@@ -21,15 +21,15 @@ The main case contains 24 machines arranged in eight stages, with **4, 2, 4, 4, 
 
 Each episode contains 20 decision windows. The maintenance window has length 1, the production period has length 20, and replenishment occurs at intervals of five windows. Time lengths use the model time unit.
 
-| Action | Description | Restoration level | Remaining-age factor |
-| --- | --- | --- | --- |
-| NM | No maintenance | 0 | 1 |
-| PM1 | Preventive maintenance, level 1 | 0.4 | 0.6 |
-| PM2 | Preventive maintenance, level 2 | 0.6 | 0.4 |
-| PM3 | Preventive maintenance, level 3 | 0.8 | 0.2 |
-| CM | Corrective replacement | 0.98 | 0.02 |
+| Action | Description | Restoration level | Remaining-age factor | Parts (S1, S2, S3) |
+| --- | --- | --- | --- | --- |
+| NM | No maintenance | 0 | 1 | (0, 0, 0) |
+| PM1 | Preventive maintenance, level 1 | 0.4 | 0.6 | (1, 0, 0) |
+| PM2 | Preventive maintenance, level 2 | 0.6 | 0.4 | (1, 1, 0) |
+| PM3 | Preventive maintenance, level 3 | 0.8 | 0.2 | (2, 1, 1) |
+| CM | Corrective replacement | 0.98 | 0.02 | (2, 2, 1) |
 
-PM1 and PM2 consume no spare parts. PM3 and CM have machine-specific part requirements, listed in each instance file. CM is mandatory for failed machines and may also be selected for healthy machines. Mandatory corrective work is handled first; the default execution rule accepts discretionary work on an all-or-nothing basis.
+All PM levels and CM consume spare parts and qualified worker time. The part vectors in the table apply to every machine in the 12-, 24-, and 48-machine instances and are also listed in each instance file. CM is mandatory for failed machines and may also be selected for healthy machines. Mandatory corrective work is handled first; the default execution rule accepts discretionary work on an all-or-nothing basis.
 
 ## Inventory and workforce configurations
 
@@ -71,6 +71,8 @@ print(resources["default"])      # {'supply_factor': 1, 'worker_count': 4}
 Machine and stage IDs start at 1; worker and skill IDs start at 0. Part vectors follow the order **S1, S2, S3**, and skill vectors follow **0, 1, 2**. A qualification entry of 1 means qualified; a null efficiency entry denotes an unqualified worker–skill pair.
 
 The machine fields `shape` and `scale` specify the Weibull parameters, and `A_cap` gives the capacity for the modeled product. The field `cm_time` gives the nominal CM duration. A PM duration equals `cm_time` multiplied by the restoration level. Worker-dependent duration then equals nominal duration multiplied by `efficiency_by_skill`; a smaller positive multiplier means faster processing.
+
+For each production period, the time to first failure is sampled from the residual-life distribution conditional on the post-maintenance age. The same sample determines the failure indicator and the operating time `min(T_fail, tau_p)`.
 
 ## Publication scope
 

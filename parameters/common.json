@@ -66,5 +66,5 @@
     "CM": "machine.cm_time",
     "worker_adjustment": "nominal_processing_time * worker_efficiency"
   },
-  "operating_time_definition": "tau_p * (1 - failure_probability * failure_indicator)"
+  "operating_time_definition": "min(T_fail, tau_p), where T_fail is sampled from the residual-life distribution conditional on the post-maintenance age; the same sample determines the failure indicator"
 }
