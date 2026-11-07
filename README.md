@@ -1,50 +1,79 @@
-# Maintenance-scheduling environment parameters
+# Maintenance Scheduling Instances
 
-This repository contains a manuscript-aligned parameter transcription for the maintenance-scheduling instances. It contains JSON parameter data and field documentation. It does not contain training settings, learning algorithms, solver implementations, checkpoints, experimental results, or manuscript files.
+This repository provides environment parameters accompanying the EASPO maintenance-scheduling study. The instances describe manufacturing systems with machine degradation, multiple maintenance levels, spare-part inventories, and workers with overlapping skills.
 
-## Files
+The files cover the 12-, 24-, and 48-machine systems, the 24-machine inventory–workforce resource grid, and supplementary operating conditions. All parameters are provided in JSON format.
 
-| File | Contents |
+## Repository contents
+
+| File | Description |
 | --- | --- |
-| `parameters/common.json` | Time constants, maintenance actions, restoration factors, environment execution rules, and violation-penalty settings. |
-| `parameters/instances/12_machines.json` | Machine physical parameters, topology, action-specific part requirements, required skills, processing times, and two-worker profiles. |
-| `parameters/instances/24_machines.json` | The corresponding 24-machine instance with eight stages and four workers. |
-| `parameters/instances/48_machines.json` | The corresponding 48-machine instance with sixteen stages and eight workers. |
-| `parameters/resource_grid_24.json` | Three inventory-supply factors crossed with three workforce configurations. |
-| `parameters/supplementary_conditions.json` | Replenishment-interval, qualification-overlap, fixed-tight-inventory workforce, and execution-rule variants. |
+| [common.json](parameters/common.json) | Time constants, maintenance actions, restoration factors, processing-time definitions, execution rules, and environment violation penalties. |
+| [12_machines.json](parameters/instances/12_machines.json) | Physical machine parameters, topology, part requirements, required skills, and worker profiles for 12 machines and 2 workers. |
+| [24_machines.json](parameters/instances/24_machines.json) | The corresponding parameters for 24 machines and 4 workers. |
+| [48_machines.json](parameters/instances/48_machines.json) | The corresponding parameters for 48 machines and 8 workers. |
+| [resource_grid_24.json](parameters/resource_grid_24.json) | Initial-stock distributions, replenishment quantities, and worker subsets for the nine resource configurations. |
+| [supplementary_conditions.json](parameters/supplementary_conditions.json) | Replenishment-interval, skill-overlap, workforce-size, and execution-rule variants. |
 
-## Conventions
+## Baseline setting
 
-Machine IDs and stage IDs start at 1. Worker IDs and skill IDs start at 0. Every part vector uses the order `S1, S2, S3`. Qualification vectors and efficiency vectors use skill order `0, 1, 2`. A qualification entry of 1 means that the worker is qualified. A null efficiency entry denotes an unqualified worker/skill pair.
+The main case contains 24 machines arranged in eight stages, with **4, 2, 4, 4, 2, 2, 2, and 4 machines** per stage. Four workers cover three skills, and maintenance uses three spare-part types: S1, S2, and S3.
 
-The action order is NM, PM1, PM2, PM3, CM. Their restoration levels are 0, 0.4, 0.6, 0.8, and 0.98; their remaining-age factors are 1, 0.6, 0.4, 0.2, and 0.02. CM is mandatory for failed machines and can also be selected for healthy machines. PM1 and PM2 consume no parts. PM3 consumption depends on the machine; a zero vector for an individual machine is allowed.
+Each episode contains 20 decision windows. The maintenance window has length 1, the production period has length 20, and replenishment occurs at intervals of five windows. Time lengths use the model time unit.
 
-Time values use the model time unit. An episode contains 20 decision windows, each with maintenance-window length 1 and production-period length 20. The baseline delivery interval is five windows. Initial-stock ranges are inclusive discrete uniform integer distributions. The files specify the interval without adding an unverified first-delivery offset.
+| Action | Description | Restoration level | Remaining-age factor |
+| --- | --- | --- | --- |
+| NM | No maintenance | 0 | 1 |
+| PM1 | Preventive maintenance, level 1 | 0.4 | 0.6 |
+| PM2 | Preventive maintenance, level 2 | 0.6 | 0.4 |
+| PM3 | Preventive maintenance, level 3 | 0.8 | 0.2 |
+| CM | Corrective replacement | 0.98 | 0.02 |
 
-`cm_time` is the nominal corrective-maintenance duration. A preventive duration equals `cm_time` multiplied by its restoration level. Worker efficiency is a **duration multiplier**: worker-dependent duration equals nominal duration times the multiplier, so a smaller positive value corresponds to faster work.
+PM1 and PM2 consume no spare parts. PM3 and CM have machine-specific part requirements, listed in each instance file. CM is mandatory for failed machines and may also be selected for healthy machines. Mandatory corrective work is handled first; the default execution rule accepts discretionary work on an all-or-nothing basis.
 
-The machine fields `shape` and `scale` are the Weibull parameters. `lifetime`, `bias`, and `A_condition` preserve the corresponding instance-table fields. `A_cap` is the capacity field used for the single product in these instances. Field names are retained to make comparison with the instance tables possible.
+## Inventory and workforce configurations
 
-## Resource grid
+The resource study crosses the three inventory-supply settings below with each of the three workforce configurations, producing nine combinations. The baseline uses supply factor 1.00 and four workers.
 
-| Supply factor | Initial S1 / S2 / S3 stock intervals | Units per delivery |
+| Supply factor | Initial S1 stock | Initial S2 stock | Initial S3 stock | Delivery quantities (S1, S2, S3) |
+| --- | --- | --- | --- | --- |
+| 1.00 | [29, 45] | [23, 35] | [11, 18] | (31, 19, 7) |
+| 0.75 | [21, 33] | [17, 26] | [8, 13] | (23, 14, 5) |
+| 0.50 | [14, 22] | [11, 17] | [5, 9] | (15, 9, 3) |
+
+Initial stocks follow discrete uniform distributions over the inclusive integer intervals. Each supply factor scales the baseline stock bounds and delivery quantities, with componentwise rounding down.
+
+| Workers | Retained worker IDs | Qualified-worker counts by skill |
 | --- | --- | --- |
-| 1.00 | [29,45] / [23,35] / [11,18] | 31 / 19 / 7 |
-| 0.75 | [21,33] / [17,26] / [8,13] | 23 / 14 / 5 |
-| 0.50 | [14,22] / [11,17] / [5,9] | 15 / 9 / 3 |
+| 4 | 0, 1, 2, 3 | (2, 2, 2) |
+| 3 | 0, 2, 3 | (1, 2, 2) |
+| 2 | 0, 2 | (1, 2, 1) |
 
-| Workers | Retained baseline worker IDs | Qualified workers per skill |
-| --- | --- | --- |
-| 4 | 0, 1, 2, 3 | 2, 2, 2 |
-| 3 | 0, 2, 3 | 1, 2, 2 |
-| 2 | 0, 2 | 1, 2, 1 |
+Retained workers keep their baseline qualifications and efficiencies. Their IDs remain unchanged when selecting a subset. Machine parameters, action requirements, and maintenance-window length remain fixed across the resource grid.
 
-The nine grid entries inherit the machine data, action requirements, and retained worker profiles of the 24-machine instance. Worker IDs remain the original baseline IDs when a subset is selected. Inventory factors multiply each baseline bound and delivery quantity, followed by rounding down. Inventory-capacity values are not specified in this release because the current manuscript does not specify that constraint.
+## Reading the files
 
-## Provenance and scope
+From the repository root, load the common settings, machine instance, and resource configuration together:
 
-Core constants and the resource grid follow the current manuscript's experimental setup and the resource-configuration table in the accompanying author response. Machine physical parameters, per-machine part requirements, required skills, and baseline worker profiles come from the existing 12-, 24-, and 48-machine instance tables. The sparse per-machine part requirements are expanded into explicit vectors, preserving the manuscript's zero consumption at PM1 and PM2. Supplementary qualification matrices follow the accompanying resource-settings record.
+```python
+import json
+from pathlib import Path
 
-This is a field-level parameter transcription, not an unchanged export of an archived experimental run. Historical configuration files contain conflicting parts-use, monetary, and downtime settings. The operating-time expression in `common.json` follows the manuscript. Monetary coefficients such as product price, labor charges, part prices, setup charges, emergency procurement rates, and spillover rates are not assigned in this version. Initial machine-state sampling, initial delivery phase, alternative-overlap worker efficiencies, and scale-specific inventory settings are also outside the verified fields in this release. Consequently, these files alone do not specify a complete executable simulation or establish reproduction of reported costs.
+parameters = Path("parameters")
+common = json.loads((parameters / "common.json").read_text())
+instance = json.loads((parameters / "instances/24_machines.json").read_text())
+resources = json.loads((parameters / "resource_grid_24.json").read_text())
 
-Algorithmic settings such as PPO/CPO options, BC coefficients, priority-score weights, training/evaluation seeds, training budgets, and solver budgets are excluded. The environment violation-penalty coefficients remain included because they define the environment's reward, and actual economic cost excludes those discretionary-violation charges.
+print(instance["machine_count"])  # 24
+print(resources["default"])      # {'supply_factor': 1, 'worker_count': 4}
+```
+
+Machine and stage IDs start at 1; worker and skill IDs start at 0. Part vectors follow the order **S1, S2, S3**, and skill vectors follow **0, 1, 2**. A qualification entry of 1 means qualified; a null efficiency entry denotes an unqualified worker–skill pair.
+
+The machine fields `shape` and `scale` specify the Weibull parameters, and `A_cap` gives the capacity for the modeled product. The field `cm_time` gives the nominal CM duration. A PM duration equals `cm_time` multiplied by the restoration level. Worker-dependent duration then equals nominal duration multiplied by `efficiency_by_skill`; a smaller positive multiplier means faster processing.
+
+## Publication scope
+
+The published fields follow the manuscript's case setting, resource design, and supplementary configuration descriptions. This repository distributes environment parameter data; training configurations, algorithms, checkpoints, and experimental results are outside its scope.
+
+The release does not supply monetary coefficients, inventory-capacity limits, initial machine-state sampling, the initial replenishment phase, efficiencies for the alternative skill-overlap condition, or inventory settings specific to the 12- and 48-machine systems. These files therefore provide a parameter reference rather than a complete simulator configuration.
