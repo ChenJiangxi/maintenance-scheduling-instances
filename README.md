@@ -1,4 +1,4 @@
-# Maintenance Scheduling Instances
+# Multi-Machine Maintenance Scheduling Instances with Spare-Part and Workforce Constraints
 
 This repository provides environment parameters accompanying the EASPO maintenance-scheduling study. The instances describe manufacturing systems with machine degradation, multiple maintenance levels, spare-part inventories, and workers with overlapping skills.
 
