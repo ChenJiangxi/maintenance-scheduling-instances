@@ -35,13 +35,13 @@ All PM levels and CM consume spare parts and qualified worker time. The part vec
 
 The resource study crosses the three inventory-supply settings below with each of the three workforce configurations, producing nine combinations. The baseline uses supply factor 1.00 and four workers.
 
-| Supply factor | Initial S1 stock | Initial S2 stock | Initial S3 stock | Delivery quantities (S1, S2, S3) |
-| --- | --- | --- | --- | --- |
-| 1.00 | [29, 45] | [23, 35] | [11, 18] | (31, 19, 7) |
-| 0.75 | [21, 33] | [17, 26] | [8, 13] | (23, 14, 5) |
-| 0.50 | [14, 22] | [11, 17] | [5, 9] | (15, 9, 3) |
+| Supply factor | Initial S1 stock | Initial S2 stock | Initial S3 stock | Delivery quantities (S1, S2, S3) | Storage capacities (S1, S2, S3) |
+| --- | --- | --- | --- | --- | --- |
+| 1.00 | [29, 45] | [23, 35] | [11, 18] | (31, 19, 7) | (93, 57, 21) |
+| 0.75 | [21, 33] | [17, 26] | [8, 13] | (23, 14, 5) | (69, 42, 15) |
+| 0.50 | [14, 22] | [11, 17] | [5, 9] | (15, 9, 3) | (46, 28, 10) |
 
-Initial stocks follow discrete uniform distributions over the inclusive integer intervals. Each supply factor scales the baseline stock bounds and delivery quantities, with componentwise rounding down.
+Initial stocks follow discrete uniform distributions over the inclusive integer intervals. Each supply factor scales the baseline stock bounds, delivery quantities, and storage capacities, with componentwise rounding down. A delivery is truncated so that on-hand stock does not exceed the storage capacity.
 
 | Workers | Retained worker IDs | Qualified-worker counts by skill |
 | --- | --- | --- |
@@ -78,4 +78,4 @@ For each production period, the time to first failure is sampled from the residu
 
 The published fields follow the manuscript's case setting, resource design, and supplementary configuration descriptions. This repository distributes environment parameter data; training configurations, algorithms, checkpoints, and experimental results are outside its scope.
 
-The release does not supply monetary coefficients, inventory-capacity limits, initial machine-state sampling, the initial replenishment phase, efficiencies for the alternative skill-overlap condition, or inventory settings specific to the 12- and 48-machine systems. These files therefore provide a parameter reference rather than a complete simulator configuration.
+The release does not supply monetary coefficients, initial machine-state sampling, the initial replenishment phase, efficiencies for the alternative skill-overlap condition, or inventory settings specific to the 12- and 48-machine systems. These files therefore provide a parameter reference rather than a complete simulator configuration.

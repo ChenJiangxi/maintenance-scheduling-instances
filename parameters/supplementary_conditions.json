@@ -4,7 +4,7 @@
   "replenishment_interval_variant": {
     "baseline_interval_windows": 5,
     "alternative_interval_windows": 6,
-    "initial_stock_and_batch_quantities": "same as baseline supply in resource_grid_24.json"
+    "initial_stock_batch_quantities_and_storage_capacity": "same as baseline supply in resource_grid_24.json"
   },
   "qualification_overlap_variant": {
     "worker_ids": [
